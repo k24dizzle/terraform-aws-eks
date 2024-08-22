@@ -104,6 +104,10 @@ resource "aws_iam_role_policy_attachment" "controller" {
 
   role       = aws_iam_role.controller[0].name
   policy_arn = aws_iam_policy.controller[0].arn
+
+  depends_on = [
+    aws_iam_policy.controller,
+  ]
 }
 
 resource "aws_iam_role_policy_attachment" "controller_additional" {
@@ -111,6 +115,10 @@ resource "aws_iam_role_policy_attachment" "controller_additional" {
 
   role       = aws_iam_role.controller[0].name
   policy_arn = each.value
+
+  depends_on = [
+    aws_iam_policy.controller,
+  ]
 }
 
 ################################################################################
